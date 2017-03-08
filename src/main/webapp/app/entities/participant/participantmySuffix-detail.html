@@ -1,0 +1,35 @@
+
+<div>
+    <h2><span data-translate="labratApp.participant.detail.title">Participant</span> {{vm.participant.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row jh-entity-details">
+        <dt><span data-translate="labratApp.participant.firstName">First Name</span></dt>
+        <dd>
+            <span>{{vm.participant.firstName}}</span>
+        </dd>
+        <dt><span data-translate="labratApp.participant.lastName">Last Name</span></dt>
+        <dd>
+            <span>{{vm.participant.lastName}}</span>
+        </dd>
+        <dt><span data-translate="labratApp.participant.email">Email</span></dt>
+        <dd>
+            <span>{{vm.participant.email}}</span>
+        </dd>
+        <dt><span data-translate="labratApp.participant.phoneNumber">Phone Number</span></dt>
+        <dd>
+            <span>{{vm.participant.phoneNumber}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="participantmySuffix-detail.edit({id:vm.participant.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

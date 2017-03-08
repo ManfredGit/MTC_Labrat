@@ -1,0 +1,10 @@
+{
+    "labratApp": {
+        "LeaseStatus" : {
+            "null": "",
+            "ACTIVE": "ACTIVE",
+            "COMPLETED": "COMPLETED",
+            "CANCELED": "CANCELED"
+        }
+    }
+}

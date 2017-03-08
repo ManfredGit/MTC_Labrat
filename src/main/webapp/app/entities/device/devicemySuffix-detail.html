@@ -1,0 +1,43 @@
+
+<div>
+    <h2><span data-translate="labratApp.device.detail.title">Device</span> {{vm.device.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row jh-entity-details">
+        <dt><span data-translate="labratApp.device.name">Name</span></dt>
+        <dd>
+            <span>{{vm.device.name}}</span>
+        </dd>
+        <dt><span data-translate="labratApp.device.manufacture">Manufacture</span></dt>
+        <dd>
+            <span>{{vm.device.manufacture}}</span>
+        </dd>
+        <dt><span data-translate="labratApp.device.model">Model</span></dt>
+        <dd>
+            <span>{{vm.device.model}}</span>
+        </dd>
+        <dt><span data-translate="labratApp.device.apiUserId">Api User Id</span></dt>
+        <dd>
+            <span>{{vm.device.apiUserId}}</span>
+        </dd>
+        <dt><span data-translate="labratApp.device.apiUriPrefix">Api Uri Prefix</span></dt>
+        <dd>
+            <span>{{vm.device.apiUriPrefix}}</span>
+        </dd>
+        <dt><span data-translate="labratApp.device.apiToken">Api Token</span></dt>
+        <dd>
+            <span>{{vm.device.apiToken}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="devicemySuffix-detail.edit({id:vm.device.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

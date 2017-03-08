@@ -1,0 +1,78 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myDeviceLabel" data-translate="labratApp.device.home.createOrEditLabel">Create or edit a Device</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.device.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.device.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="labratApp.device.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                    ng-model="vm.device.name"
+                    required ng-minlength="3"/>
+            <div ng-show="editForm.name.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.name.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.name.$error.minlength" data-translate="entity.validation.minlength" translate-value-min="3">
+                    This field is required to be at least 3 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="labratApp.device.manufacture" for="field_manufacture">Manufacture</label>
+            <input type="text" class="form-control" name="manufacture" id="field_manufacture"
+                    ng-model="vm.device.manufacture"
+                    required/>
+            <div ng-show="editForm.manufacture.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.manufacture.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="labratApp.device.model" for="field_model">Model</label>
+            <input type="text" class="form-control" name="model" id="field_model"
+                    ng-model="vm.device.model"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="labratApp.device.apiUserId" for="field_apiUserId">Api User Id</label>
+            <input type="text" class="form-control" name="apiUserId" id="field_apiUserId"
+                    ng-model="vm.device.apiUserId"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="labratApp.device.apiUriPrefix" for="field_apiUriPrefix">Api Uri Prefix</label>
+            <input type="text" class="form-control" name="apiUriPrefix" id="field_apiUriPrefix"
+                    ng-model="vm.device.apiUriPrefix"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="labratApp.device.apiToken" for="field_apiToken">Api Token</label>
+            <input type="text" class="form-control" name="apiToken" id="field_apiToken"
+                    ng-model="vm.device.apiToken"
+                    />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

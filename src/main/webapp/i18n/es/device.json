@@ -1,0 +1,27 @@
+{
+    "labratApp": {
+        "device" : {
+            "home": {
+                "title": "Devices",
+                "createLabel": "Crear nuevo Device",
+                "createOrEditLabel": "Crear o editar Device",
+                "search": "Search for Device"
+            },
+            "created": "Un nuevo Device ha sido creado con el identificador {{ param }}",
+            "updated": "Un Device ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Device ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Device {{ id }}?"
+            },
+            "detail": {
+                "title": "Device"
+            },
+            "name": "Name",
+            "manufacture": "Manufacture",
+            "model": "Model",
+            "apiUserId": "Api User Id",
+            "apiUriPrefix": "Api Uri Prefix",
+            "apiToken": "Api Token"
+        }
+    }
+}

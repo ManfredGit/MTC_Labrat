@@ -1,0 +1,25 @@
+{
+    "labratApp": {
+        "participant" : {
+            "home": {
+                "title": "Participants",
+                "createLabel": "Créer un nouveau Participant",
+                "createOrEditLabel": "Créer ou éditer un Participant",
+                "search": "Recherche pour Participant"
+            },
+            "created": "Un nouveau Participant a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Participant avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Participant avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Participant {{ id }} ?"
+            },
+            "detail": {
+                "title": "Participant"
+            },
+            "firstName": "First Name",
+            "lastName": "Last Name",
+            "email": "Email",
+            "phoneNumber": "Phone Number"
+        }
+    }
+}

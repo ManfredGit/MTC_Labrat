@@ -1,0 +1,26 @@
+{
+    "labratApp": {
+        "lease" : {
+            "home": {
+                "title": "Leases",
+                "createLabel": "Crear nuevo Lease",
+                "createOrEditLabel": "Crear o editar Lease",
+                "search": "Search for Lease"
+            },
+            "created": "Un nuevo Lease ha sido creado con el identificador {{ param }}",
+            "updated": "Un Lease ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Lease ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Lease {{ id }}?"
+            },
+            "detail": {
+                "title": "Lease"
+            },
+            "startDate": "Start Date",
+            "endDate": "End Date",
+            "status": "Status",
+            "device": "Device",
+            "participant": "Participant"
+        }
+    }
+}
