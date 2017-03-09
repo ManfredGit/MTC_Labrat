@@ -1,11 +1,11 @@
 {
     "home": {
-        "title": "Welcome, Java Hipster!",
-        "subtitle": "This is your homepage",
+        "title": "Welcome to Labrat!",
+        "subtitle": "Labrat is a Clinical Study platform that enables the management of health-related interventions that are targeted to evaluate health effects and outcomes. The platform facilitates resource scheduling, as well as participant and equipment management.",
         "logged": {
             "message": "You are logged in as user \"{{username}}\"."
         },
-        "question": "If you have any question on JHipster:",
+        "question": "If you have any question on Labrat:",
         "link": {
             "homepage": "JHipster homepage",
             "stackoverflow": "JHipster on Stack Overflow",
