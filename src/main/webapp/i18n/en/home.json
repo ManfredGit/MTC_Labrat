@@ -1,7 +1,7 @@
 {
     "home": {
         "title": "Welcome to Labrat!",
-        "subtitle": "Labrat is a Clinical Study platform that enables the management of health-related interventions that are targeted to evaluate health effects and outcomes. The platform facilitates resource scheduling, as well as participant and equipment management.",
+        "subtitle": "Labrat is a Clinical Study platform that enables the management of health-related interventions that are targeted to evaluate health effects and outcomes for a specific control group of participants. The platform facilitates resource scheduling, participant and equipment management, as well as device data and telemetry storage configuration.",
         "logged": {
             "message": "You are logged in as user \"{{username}}\"."
         },

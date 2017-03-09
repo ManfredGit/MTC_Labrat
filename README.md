@@ -1,7 +1,10 @@
-# labrat
-This application was generated using JHipster 4.0.2, you can find documentation and help at [https://jhipster.github.io/documentation-archive/v4.0.2](https://jhipster.github.io/documentation-archive/v4.0.2).
+# Welcome to Labrat!
+
+
+Labrat is a Clinical Study platform that enables the management of health-related interventions that are targeted to evaluate health effects and outcomes for a specific control group of participants. The platform facilitates resource scheduling, participant and equipment management, as well as device data and telemetry storage configuration.
 
 ## Development
+Labrat uses a number of open source projects to work properly. The back-end application was generated using JHipster 4.0.2, you can find documentation and help at [https://jhipster.github.io/documentation-archive/v4.0.2](https://jhipster.github.io/documentation-archive/v4.0.2).
 
 Before you can build this project, you must install and configure the following dependencies on your machine:
 1. [Node.js][]: We use Node to run a development web server and build the project.
@@ -74,7 +77,6 @@ You can use Docker to improve your JHipster development experience. A number of 
 For example, to start a mssql database in a docker container, run:
 
     docker-compose -f src/main/docker/mssql.yml up -d
-
 To stop it and remove the container, run:
 
     docker-compose -f src/main/docker/mssql.yml down
@@ -94,6 +96,11 @@ For more information refer to [Using Docker and Docker-Compose][], this page als
 
 To set up a CI environment, consult the [Setting up Continuous Integration][] page.
 
+License
+----
+
+MIT
+
 [JHipster Homepage and latest documentation]: https://jhipster.github.io
 [JHipster 4.0.2 archive]: https://jhipster.github.io/documentation-archive/v4.0.2
 
@@ -112,5 +119,26 @@ To set up a CI environment, consult the [Setting up Continuous Integration][] pa
 [Karma]: http://karma-runner.github.io/
 [Jasmine]: http://jasmine.github.io/2.0/introduction.html
 [Protractor]: https://angular.github.io/protractor/
-[Leaflet]: http://leafletjs.com/
-[DefinitelyTyped]: http://definitelytyped.org/
+   [Java]: <http://java.com> 
+   [SpringBoot]: <https://projects.spring.io/spring-boot/>
+   [Maven]: <https://maven.apache.org>
+   [Hibernate]: <http://hibernate.org/>
+   [Liquibase]: <http://www.liquibase.org/>
+   [Ehcache]: <http://www.ehcache.org/>
+   [Swagger]: <http://swagger.io/>
+   [Gatling]: <http://gatling.io/>
+   [Protractor]: <http://www.protractortest.org/>
+   [labrat]: <https://github.com/microsoft/labrat>
+   [git-repo-url]: <https://github.com/joemccann/dillinger.git>
+   [john gruber]: <http://daringfireball.net>
+   [df1]: <http://daringfireball.net/projects/markdown/>
+   [markdown-it]: <https://github.com/markdown-it/markdown-it>
+   [Ace Editor]: <http://ace.ajax.org>
+   [node.js]: <http://nodejs.org>
+   [Twitter Bootstrap]: <http://twitter.github.com/bootstrap/>
+   [jQuery]: <http://jquery.com>
+   [@tjholowaychuk]: <http://twitter.com/tjholowaychuk>
+   [express]: <http://expressjs.com>
+   [AngularJS]: <http://angularjs.org>
+   [Gulp]: <http://gulpjs.com>
+   [Bower]: <https://bower.io>
