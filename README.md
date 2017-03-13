@@ -2,6 +2,9 @@
 
 
 Labrat is a Clinical Study platform that enables the management of health-related interventions that are targeted to evaluate health effects and outcomes for a specific control group of participants. The platform facilitates resource scheduling, participant and equipment management, as well as device data and telemetry storage configuration.
+The platform also includes a Telemetry Sync Service (TSS) that enables a scheduled data sync with 3rd party API's. 
+
+![Architectural Diagram](images/labratArchDiagram.png)
 
 ## Development
 Labrat uses a number of open source projects to work properly. The back-end application was generated using JHipster 4.0.2, you can find documentation and help at [https://jhipster.github.io/documentation-archive/v4.0.2](https://jhipster.github.io/documentation-archive/v4.0.2).
