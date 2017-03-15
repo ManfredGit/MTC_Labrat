@@ -16,6 +16,12 @@ The Labrat platform provides:
  
 &nbsp;
 
+Prerequisites
+----
+In order to successfully complete this lab you will need:
+- An active Microsoft Azure Subscription. If you do not have a current subscription, you can create one using the **<a target="_blank" href="https://azure.microsoft.com/en-us/free/">free trial</a>**
+- Labrat uses a number of open source projects to work properly, please refer to the individual service for a list of requeried software/version.
+
 License
 ----
 
