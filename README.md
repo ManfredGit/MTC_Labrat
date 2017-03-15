@@ -3,17 +3,18 @@
 
 Labrat is an open source Clinical Study platform that enables the management of health-related interventions that are targeted to evaluate health effects and outcomes for a specific control group of participants. The platform facilitates resource scheduling, participant and equipment management, as well as device data and telemetry management.
 
-The Labrat platform was developed to provide: 
+The Labrat platform provides: 
  
 1. Device and participent management, as well as help to facilitate the device lending process
 1. Collect and store the study participant's telemetry from a set of manged wearble devices
 1. Facilitate the scheduling and the telemetry sync with the 3rd party APIs 
 1. Visualize the Clinical Study result data through a set of dashboard and reporting capabilities
 
+&nbsp;
+
 ![Architectural Diagram](images/labratArchDiagram.png)
  
-## Development
-Labrat uses a number of open source projects to work properly. Please refer to the individual service for more details. 
+&nbsp;
 
 License
 ----
