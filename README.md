@@ -18,7 +18,7 @@ The Labrat platform provides:
 
 Prerequisites
 ----
-In order to successfully complete this lab you will need:
+In order to deploy the Labrat platfrom you will need:
 - An active Microsoft Azure Subscription. If you do not have a current subscription, you can create one using the **<a target="_blank" href="https://azure.microsoft.com/en-us/free/">free trial</a>**
 - Labrat uses a number of open source projects to work properly, please refer to the individual service for a list of requeried software/version.
 
@@ -46,16 +46,6 @@ MIT
    [Gatling]: <http://gatling.io/>
    [Protractor]: <http://www.protractortest.org/>
    [labrat]: <https://github.com/microsoft/labrat>
-   [git-repo-url]: <https://github.com/joemccann/dillinger.git>
-   [john gruber]: <http://daringfireball.net>
-   [df1]: <http://daringfireball.net/projects/markdown/>
-   [markdown-it]: <https://github.com/markdown-it/markdown-it>
-   [Ace Editor]: <http://ace.ajax.org>
-   [node.js]: <http://nodejs.org>
-   [Twitter Bootstrap]: <http://twitter.github.com/bootstrap/>
-   [jQuery]: <http://jquery.com>
-   [@tjholowaychuk]: <http://twitter.com/tjholowaychuk>
-   [express]: <http://expressjs.com>
    [AngularJS]: <http://angularjs.org>
    [Gulp]: <http://gulpjs.com>
    [Bower]: <https://bower.io>
