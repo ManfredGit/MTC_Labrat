@@ -1,0 +1,44 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength"
+            ],
+            "fieldValidateRulesMinlength": 3
+        },
+        {
+            "fieldName": "manufacture",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "model",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "apiUserId",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "apiUriPrefix",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "apiToken",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20170308170056",
+    "entityTableName": "device",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "no",
+    "angularJSSuffix": "mySuffix"
+}
