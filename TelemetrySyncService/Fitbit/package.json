@@ -1,15 +1,13 @@
 {
-  "name": "fitbitSync-js",
+  "name": "fitbitSync",
   "version": "1.0.0",
   "description": "Azure Function to sync the Fitbit user telemetry from the Fitbit cloud to a remote data store",
-  "main": "fitbitSync.js",
+  "main": "index.js",
   "scripts": {
-    "setup": "mkdir -p dist",
-    "bundle": "zip -r dist/bundle.zip node_modules && zip -j dist/bundle.zip fitbitSync.js",
-    "deploy": "azure function update-function-code --function-name labratFitbitSync --zip-file fileb://./dist/bundle.zip",
-    "build": "npm install && npm run setup && npm run bundle && npm run deploy"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
+    "microsoft",
     "azure",
     "function",
     "fitbit"
@@ -19,6 +17,7 @@
   "dependencies": {
     "axios": "^0.12.0",
     "promise": "^7.1.1",
-    "moment": "^2.14.1"
+    "moment": "^2.14.1",
+    "azure-functions-auth0": "~1.0.0"
   }
 }
