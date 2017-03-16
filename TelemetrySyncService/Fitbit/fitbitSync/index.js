@@ -9,28 +9,28 @@
  */
 
 module.exports = function (context, myTimer) {
-    "use strict";
+	"use strict";
 
-    // Fitbit URLs
-    const fitbitBaseUrl = "https://api.fitbit.com/1/user/-/";
-    const firbitAuthUrl = "https://www.fitbit.com/oauth2/authorize";
+	// Fitbit URLs
+	const fitbitBaseUrl = "https://api.fitbit.com/1/user/-/";
+	const fitbitAuthUrl = "https://www.fitbit.com/oauth2/authorize";
 
-    // Fitbit access metadata   
-    const clientId = GetEnvironmentVariable('clientId');
-    const clientSecret = GetEnvironmentVariable('clientSecret');
+	// Fitbit access metadata   
+	const clientId = GetEnvironmentVariable('clientId');
+	const clientSecret = GetEnvironmentVariable('clientSecret');
 
-    const auth0 = require('azure-functions-auth0')({  
-  		clientId: clientId,
-  		clientSecret: clientSecret,
-  		domain: firbitAuthUrl
-    });
+	const auth0 = require('azure-functions-auth0')({
+		clientId: clientId,
+		clientSecret: clientSecret,
+		domain: fitbitAuthUrl
+	});
 
-    // Load the axios http lib.
-    const axios = require('axios');
-    // Promise lib.
-    const promise = require('promise');
-    
-	auth0(function(context, req) {  
+	// Load the axios http lib.
+	const axios = require('axios');
+	// Promise lib.
+	const promise = require('promise');
+
+	auth0(function (context, req) {
 		context.log('Node.js HTTP trigger function processed a request. RequestUri=%s', req.originalUrl);
 
 		if (req.user) {
@@ -46,16 +46,15 @@ module.exports = function (context, myTimer) {
 		}
 		context.done();
 	});
-    
+
 	var timeStamp = new Date().toISOString();
-    context.log('JavaScript timer trigger function ran!', timeStamp);   
-    
-    context.done();
+	context.log('JavaScript timer trigger function ran!', timeStamp);
+
+	context.done();
 };
 
-function GetEnvironmentVariable(name)
-{
-    return process.env[name];
+function GetEnvironmentVariable(name) {
+	return process.env[name];
 }
 
 /**
@@ -96,7 +95,7 @@ function getIntradaySteps(offsetFromUTCMillis) {
 	let dateString = now.format("YYYY-MM-DD");
 
 	//URL to fetch data for the current hour
-	let url  = fitbitBaseUrl + `activities/steps/date/${dateString}/1d/15min/time/${hourString}:00/${hourString}:59.json`;
+	let url = fitbitBaseUrl + `activities/steps/date/${dateString}/1d/15min/time/${hourString}:00/${hourString}:59.json`;
 
 	//Fetch the data from Fitbit
 	console.log("Invoking Fitbit endpoint at: " + url);
