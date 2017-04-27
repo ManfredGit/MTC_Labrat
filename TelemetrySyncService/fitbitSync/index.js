@@ -7,110 +7,77 @@
  * @param  context - execution context of the function  
  * @param event - Azure function object containing event data 
  */
+"use strict";
 
-module.exports = function (context, myTimer) {
-	"use strict";
+var timeStamp = new Date().toISOString();
+const createHandler = require("azure-function-express").createHandler,
+	express = require('express'),
+	app = express(),
+	path = require('path'),
+	connect = require('connect'),
+	traverse = require('traverse'),
+	moment = require('moment'),
+	_ = require('lodash'),
+	_inRange = require('lodash.inrange'),
+	getConfig = require('./getConfig'),
+	config = getConfig(app),
+	exportCsv = _.curry(require('./exportCsv'))(app),
+	passport = require('passport'),
+	callbackPath = '/auth/fitbit/callback',
+	passport = require('passport'),
+	url = require('url'),
+	FitbitOAuth2Strategy = require('passport-fitbit-oauth2').FitbitOAuth2Strategy;
+	
+app.use(connect.cookieParser());
+app.use(connect.session({secret: getConfig(app).sessionSecret}));
+app.use(passport.initialize());
+app.use(passport.session());
 
-	// Fitbit URLs
-	const fitbitBaseUrl = "https://api.fitbit.com/1/user/-/";
-	const fitbitAuthUrl = "https://www.fitbit.com/oauth2/authorize";
+passport.serializeUser(function(user, done) {
+	done(null, user);
+});
 
-	// Fitbit access metadata   
-	const clientId = GetEnvironmentVariable('clientId');
-	const clientSecret = GetEnvironmentVariable('clientSecret');
+passport.deserializeUser(function(obj, done) {
+	done(null, obj);
+});
 
-	const auth0 = require('azure-functions-auth0')({
-		clientId: clientId,
-		clientSecret: clientSecret,
-		domain: fitbitAuthUrl
-	});
+const callbackUrl = url.format({
+	protocol: 'http',
+	host: config.host,
+	port: config.port,
+	pathname: callbackPath
+});
 
-	// Load the axios http lib.
-	const axios = require('axios');
-	// Promise lib.
-	const promise = require('promise');
+// Authenticate the app
+app.get('/auth/fitbit', (auth, res) => {
+	auth.context.log('Auth fitbit cloud init', timeStamp);
+	passport.authenticate('fitbit', { 
+		scope: ['activity', 'profile', 'sleep', 'weight', 'nutrition']
+	})
+});
 
-	auth0(function (context, req) {
-		context.log('Node.js HTTP trigger function processed a request. RequestUri=%s', req.originalUrl);
+app.get(callbackPath, (authCallback,res) => {
+	authCallback.context.log('Auth fitbit cloud callback', timeStamp);
+	passport.authenticate('fitbit', { 
+		successRedirect: '/',
+		failureRedirect: '/auth-error'
+	})
+});
 
-		if (req.user) {
-			context.res = {
-				body: req.user
-			};
-		}
-		else {
-			context.res = {
-				status: 400,
-				body: "The user seems to be missing"
-			};
-		}
-		context.done();
-	});
+passport.use(new FitbitOAuth2Strategy({
+	clientID: config.fitbitClientKey,
+	clientSecret: config.fitbitClientSecret,
+	callbackUrl: callbackUrl
+}, function(accessToken, refreshToken, profile, done) {
+	//context.log({profileId: profile.id, profileDisplayName: profile.displayName}, 'Logged in user');
 
-	var timeStamp = new Date().toISOString();
-	context.log('JavaScript timer trigger function ran!', timeStamp);
+	profile.accessToken = accessToken;
+	profile.refreshToken = refreshToken;
 
-	context.done();
-};
+	done(null, profile);
+}));
 
-function GetEnvironmentVariable(name) {
-	return process.env[name];
-}
+// Get the data
+//exportCsv(context, app);
 
-/**
- * Determines the user's time offset from UTC in milliseconds. This allows us to normalized
- * the local time with the device's timezone. (at least the last recorded timezone)
- * @return the UTC offset in milliseconds
- */
-function getFitbitProfileUTCOffset() {
-	return axios({
-		url: fitbitBaseUrl + "profile.json",
-		method: 'GET',
-		headers: {
-			'Authorization': 'Bearer ' + accessToken
-		}
-	}).then(response => {
-		let offsetFromUTCMillis = response.data.user.offsetFromUTCMillis
-		console.log("User's UTC offest in milliseconds is: " + offsetFromUTCMillis);
-		return offsetFromUTCMillis;
-	}).catch(error => {
-		throw error;
-	});
-}
-
-
-/**
- * Get the intraday steps for the current user using the input UTC offet
- */
-function getIntradaySteps(offsetFromUTCMillis) {
-	// Moment.js library
-	const moment = require('moment')
-
-	//Get the current date/time and offset based on the Fitbit user's profile
-	let now = moment();
-	now.add(offsetFromUTCMillis, 'ms');
-
-	//Format date range values
-	let hourString = now.get('hour');
-	let dateString = now.format("YYYY-MM-DD");
-
-	//URL to fetch data for the current hour
-	let url = fitbitBaseUrl + `activities/steps/date/${dateString}/1d/15min/time/${hourString}:00/${hourString}:59.json`;
-
-	//Fetch the data from Fitbit
-	console.log("Invoking Fitbit endpoint at: " + url);
-
-	return axios({
-		url: url,
-		method: 'GET',
-		headers: {
-			'Authorization': 'Bearer ' + accessToken
-		}
-	}).then(response => {
-		console.log("Returned payload: \n" + JSON.stringify(response.data["activities-steps-intraday"]));
-		let dataset = response.data["activities-steps-intraday"].dataset;
-		return dataset;
-	}).catch(error => {
-		throw error;
-	});
-}
+module.exports = createHandler(app);
