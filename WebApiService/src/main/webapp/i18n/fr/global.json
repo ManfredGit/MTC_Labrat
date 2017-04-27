@@ -7,9 +7,9 @@
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "Entités",
-                "devicemySuffix": "Device",
-                "leasemySuffix": "Lease",
-                "participantmySuffix": "Participant",
+                "participantMySuffix": "Participant",
+                "deviceMySuffix": "Device",
+                "leaseMySuffix": "Lease",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
@@ -114,12 +114,13 @@
         }
     },
     "error": {
+        "internalServerError": "Erreur interne du serveur",
         "server.not.reachable": "Serveur inaccessible",
         "url.not.found": "Non trouvé",
         "NotNull": "Le champ {{fieldName}} ne peut pas être vide !",
         "Size": "Le champ {{fieldName}} ne respecte pas les critères minimum et maximum !",
-        "userexists": "Login déja utilisé !",
-        "emailexists": "Email déja utilisé !",
+        "userexists": "Login déjà utilisé !",
+        "emailexists": "Email déjà utilisé !",
         "idexists": "Une nouvelle entité {{entityName}} ne peut pas avoir d'ID !"
     },
     "footer": "Ceci est votre pied de page"

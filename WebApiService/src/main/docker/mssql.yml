@@ -1,7 +1,6 @@
 version: '2'
 services:
     labrat-mssql:
-        container_name: labrat-mssql
         image: microsoft/mssql-server-linux:latest
         # volumes are not supported on macOS
         # volumes:

@@ -11,12 +11,13 @@
     <!-- build:css content/css/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css">
     <!-- endinject -->
     <!-- endbuild -->
+    
     <!-- build:css content/css/main.css -->
-
-    <link rel="stylesheet" href="content/css/style.css">
     <link rel="stylesheet" href="content/css/main.css">
+    <link rel="stylesheet" href="content/css/style.css">
     <!-- endbuild -->
 </head>
 <body ng-app="labratApp" ng-strict-di>
@@ -30,8 +31,7 @@
             <!-- Angular views -->
         </div>
 
-        <div class="footer" ng-cloak>
-            <p data-translate="footer">This is your footer</p>
+        <div class="footer">
         </div>
     </div>
 
@@ -57,6 +57,7 @@
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="bower_components/angular-dynamic-locale/src/tmhDynamicLocale.js"></script>
     <script src="bower_components/ngstorage/ngStorage.js"></script>
+    <script src="bower_components/angular-loading-bar/build/loading-bar.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-translate/angular-translate.js"></script>
@@ -66,6 +67,7 @@
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/bootstrap-ui-datetime-picker/dist/datetime-picker.js"></script>
     <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
+    <script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
     <!-- endinject -->
     <!-- endbuild -->
 
@@ -92,25 +94,25 @@
     <script src="app/layouts/error/error.state.js"></script>
     <script src="app/home/home.state.js"></script>
     <script src="app/home/home.controller.js"></script>
-    <script src="app/entities/participant/participantmySuffix-dialog.controller.js"></script>
-    <script src="app/entities/participant/participantmySuffix-detail.controller.js"></script>
-    <script src="app/entities/participant/participantmySuffix-delete-dialog.controller.js"></script>
-    <script src="app/entities/participant/participantmySuffix.state.js"></script>
-    <script src="app/entities/participant/participantmySuffix.service.js"></script>
-    <script src="app/entities/participant/participantmySuffix.controller.js"></script>
-    <script src="app/entities/lease/leasemySuffix-dialog.controller.js"></script>
-    <script src="app/entities/lease/leasemySuffix-detail.controller.js"></script>
-    <script src="app/entities/lease/leasemySuffix-delete-dialog.controller.js"></script>
-    <script src="app/entities/lease/leasemySuffix.state.js"></script>
-    <script src="app/entities/lease/leasemySuffix.service.js"></script>
-    <script src="app/entities/lease/leasemySuffix.controller.js"></script>
+    <script src="app/entities/participant/participant-my-suffix-dialog.controller.js"></script>
+    <script src="app/entities/participant/participant-my-suffix-detail.controller.js"></script>
+    <script src="app/entities/participant/participant-my-suffix-delete-dialog.controller.js"></script>
+    <script src="app/entities/participant/participant-my-suffix.state.js"></script>
+    <script src="app/entities/participant/participant-my-suffix.service.js"></script>
+    <script src="app/entities/participant/participant-my-suffix.controller.js"></script>
+    <script src="app/entities/lease/lease-my-suffix-dialog.controller.js"></script>
+    <script src="app/entities/lease/lease-my-suffix-detail.controller.js"></script>
+    <script src="app/entities/lease/lease-my-suffix-delete-dialog.controller.js"></script>
+    <script src="app/entities/lease/lease-my-suffix.state.js"></script>
+    <script src="app/entities/lease/lease-my-suffix.service.js"></script>
+    <script src="app/entities/lease/lease-my-suffix.controller.js"></script>
     <script src="app/entities/entity.state.js"></script>
-    <script src="app/entities/device/devicemySuffix-dialog.controller.js"></script>
-    <script src="app/entities/device/devicemySuffix-detail.controller.js"></script>
-    <script src="app/entities/device/devicemySuffix-delete-dialog.controller.js"></script>
-    <script src="app/entities/device/devicemySuffix.state.js"></script>
-    <script src="app/entities/device/devicemySuffix.service.js"></script>
-    <script src="app/entities/device/devicemySuffix.controller.js"></script>
+    <script src="app/entities/device/device-my-suffix-dialog.controller.js"></script>
+    <script src="app/entities/device/device-my-suffix-detail.controller.js"></script>
+    <script src="app/entities/device/device-my-suffix-delete-dialog.controller.js"></script>
+    <script src="app/entities/device/device-my-suffix.state.js"></script>
+    <script src="app/entities/device/device-my-suffix.service.js"></script>
+    <script src="app/entities/device/device-my-suffix.controller.js"></script>
     <script src="app/components/util/truncate-words.filter.js"></script>
     <script src="app/components/util/truncate-characters.filter.js"></script>
     <script src="app/components/util/sort-by.directive.js"></script>

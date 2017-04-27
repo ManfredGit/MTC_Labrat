@@ -1,9 +1,13 @@
 {
   "generator-jhipster": {
-    "jhipsterVersion": "4.0.2",
+    "promptValues": {
+      "packageName": "com.microsoft.labrat",
+      "nativeLanguage": "en"
+    },
+    "jhipsterVersion": "4.3.0",
     "baseName": "labrat",
-    "packageName": "com.microsoft",
-    "packageFolder": "com/microsoft",
+    "packageName": "com.microsoft.labrat",
+    "packageFolder": "com/microsoft/labrat",
     "serverPort": "8080",
     "authenticationType": "session",
     "hibernateCache": "ehcache",
@@ -14,23 +18,22 @@
     "prodDatabaseType": "mssql",
     "searchEngine": false,
     "messageBroker": false,
+    "serviceDiscoveryType": false,
     "buildTool": "maven",
     "enableSocialSignIn": true,
-    "rememberMeKey": "e4fb6935e709e846c90c62f5a6ce7f927508b0b3",
+    "rememberMeKey": "a700fd81a11272452e79e30b9aaa5fcc5d95b8c0",
+    "clientFramework": "angular1",
     "useSass": false,
     "clientPackageManager": "yarn",
     "applicationType": "monolith",
-    "clientFramework": "angular1",
-    "testFrameworks": [
-      "gatling",
-      "protractor"
-    ],
+    "testFrameworks": [],
     "jhiPrefix": "jhi",
     "enableTranslation": true,
     "nativeLanguage": "en",
     "languages": [
       "en",
       "fr",
+      "ru",
       "es"
     ]
   }

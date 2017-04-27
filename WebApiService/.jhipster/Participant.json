@@ -25,7 +25,7 @@
             "fieldType": "String"
         }
     ],
-    "changelogDate": "20170308170056",
+    "changelogDate": "20170426201717",
     "javadoc": "The Employee entity.",
     "entityTableName": "participant",
     "dto": "mapstruct",

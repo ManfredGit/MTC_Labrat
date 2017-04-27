@@ -4,8 +4,7 @@
             "home": {
                 "title": "Devices",
                 "createLabel": "Créer un nouveau Device",
-                "createOrEditLabel": "Créer ou éditer un Device",
-                "search": "Recherche pour Device"
+                "createOrEditLabel": "Créer ou éditer un Device"
             },
             "created": "Un nouveau Device a été créé avec l'identifiant {{ param }}",
             "updated": "Le Device avec l'identifiant {{ param }} a été mis à jour",

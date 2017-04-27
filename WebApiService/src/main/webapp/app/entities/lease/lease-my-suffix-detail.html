@@ -1,0 +1,39 @@
+
+<div>
+    <h2><span data-translate="labratApp.lease.detail.title">Lease</span> {{vm.lease.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="labratApp.lease.startDate">Start Date</span></dt>
+        <dd>
+            <span>{{vm.lease.startDate | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="labratApp.lease.endDate">End Date</span></dt>
+        <dd>
+            <span>{{vm.lease.endDate | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="labratApp.lease.status">Status</span></dt>
+        <dd>
+            <span data-translate="{{'labratApp.LeaseStatus.' + vm.lease.status}}">{{vm.lease.status}}</span>
+        </dd>
+        <dt><span data-translate="labratApp.lease.device">Device</span></dt>
+        <dd>
+            <a ui-sref="device-my-suffix-detail({id:vm.lease.deviceId})">{{vm.lease.deviceName}}</a>
+        </dd>
+        <dt><span data-translate="labratApp.lease.participant">Participant</span></dt>
+        <dd>
+            <a ui-sref="participant-my-suffix-detail({id:vm.lease.participantId})">{{vm.lease.participantId}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="lease-my-suffix-detail.edit({id:vm.lease.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -4,8 +4,7 @@
             "home": {
                 "title": "Leases",
                 "createLabel": "Crear nuevo Lease",
-                "createOrEditLabel": "Crear o editar Lease",
-                "search": "Search for Lease"
+                "createOrEditLabel": "Crear o editar Lease"
             },
             "created": "Un nuevo Lease ha sido creado con el identificador {{ param }}",
             "updated": "Un Lease ha sido actualizado con el identificador {{ param }}",

@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-4 no-padding-left">
-                <button class="btn btn-primary" ui-sref="leasemySuffix.new" >
+                <button class="btn btn-primary" ui-sref="lease-my-suffix.new" >
                     <span class="glyphicon glyphicon-plus"></span>
                     <span  data-translate="labratApp.lease.home.createLabel">
                         Create new Lease
@@ -29,32 +29,32 @@
             </thead>
             <tbody>
                 <tr ng-repeat="lease in vm.leases track by lease.id">
-                    <td><a ui-sref="leasemySuffix-detail({id:lease.id})">{{lease.id}}</a></td>
+                    <td><a ui-sref="lease-my-suffix-detail({id:lease.id})">{{lease.id}}</a></td>
                     <td>{{lease.startDate | date:'medium'}}</td>
                     <td>{{lease.endDate | date:'medium'}}</td>
                     <td data-translate="{{'labratApp.LeaseStatus.' + lease.status}}">{{lease.status}}</td>
                     <td>
-                        <a ui-sref="devicemySuffix-detail({id:lease.deviceId})">{{lease.deviceName}}</a>
+                        <a ui-sref="device-my-suffix-detail({id:lease.deviceId})">{{lease.deviceName}}</a>
                     </td>
                     <td>
-                        <a ui-sref="participantmySuffix-detail({id:lease.participantId})">{{lease.participantId}}</a>
+                        <a ui-sref="participant-my-suffix-detail({id:lease.participantId})">{{lease.participantId}}</a>
                     </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"
-                                    ui-sref="leasemySuffix-detail({id:lease.id})"
+                                    ui-sref="lease-my-suffix-detail({id:lease.id})"
                                     class="btn btn-info btn-sm">
                                 <span class="glyphicon glyphicon-eye-open"></span>
                                 <span class="hidden-sm-down" data-translate="entity.action.view"></span>
                             </button>
                             <button type="submit"
-                                    ui-sref="leasemySuffix.edit({id:lease.id})"
+                                    ui-sref="lease-my-suffix.edit({id:lease.id})"
                                     class="btn btn-primary btn-sm">
                                 <span class="glyphicon glyphicon-pencil"></span>
                                 <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
                             </button>
                             <button type="submit"
-                                    ui-sref="leasemySuffix.delete({id:lease.id})"
+                                    ui-sref="lease-my-suffix.delete({id:lease.id})"
                                     class="btn btn-danger btn-sm">
                                 <span class="glyphicon glyphicon-remove-circle"></span>
                                 <span class="hidden-sm-down" data-translate="entity.action.delete"></span>

@@ -19,6 +19,8 @@ spring:
         name: labrat
     jackson:
         serialization.write_dates_as_timestamps: false
+    cache:
+        type: none
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
         url: jdbc:h2:mem:labrat;DB_CLOSE_DELAY=-1
@@ -29,7 +31,7 @@ spring:
         database-platform: io.github.jhipster.domain.util.FixedH2Dialect
         database: H2
         open-in-view: false
-        show-sql: true
+        show-sql: false
         hibernate:
             ddl-auto: none
             naming:
@@ -43,6 +45,8 @@ spring:
             hibernate.hbm2ddl.auto: validate
     mail:
         host: localhost
+    messages:
+        basename: i18n/messages
     mvc:
         favicon:
             enabled: false
@@ -68,13 +72,13 @@ server:
 
 jhipster:
     async:
-        core-pool-size: 2
+        core-pool-size: 1
         max-pool-size: 50
         queue-capacity: 10000
     security:
         remember-me:
             # security key (this key should be unique for your application, and kept secret)
-            key: e4fb6935e709e846c90c62f5a6ce7f927508b0b3
+            key: a700fd81a11272452e79e30b9aaa5fcc5d95b8c0
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
         jmx.enabled: true
 

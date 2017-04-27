@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-4 no-padding-left">
-                <button class="btn btn-primary" ui-sref="devicemySuffix.new" >
+                <button class="btn btn-primary" ui-sref="device-my-suffix.new" >
                     <span class="glyphicon glyphicon-plus"></span>
                     <span  data-translate="labratApp.device.home.createLabel">
                         Create new Device
@@ -30,7 +30,7 @@
             </thead>
             <tbody>
                 <tr ng-repeat="device in vm.devices track by device.id">
-                    <td><a ui-sref="devicemySuffix-detail({id:device.id})">{{device.id}}</a></td>
+                    <td><a ui-sref="device-my-suffix-detail({id:device.id})">{{device.id}}</a></td>
                     <td>{{device.name}}</td>
                     <td>{{device.manufacture}}</td>
                     <td>{{device.model}}</td>
@@ -40,19 +40,19 @@
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"
-                                    ui-sref="devicemySuffix-detail({id:device.id})"
+                                    ui-sref="device-my-suffix-detail({id:device.id})"
                                     class="btn btn-info btn-sm">
                                 <span class="glyphicon glyphicon-eye-open"></span>
                                 <span class="hidden-sm-down" data-translate="entity.action.view"></span>
                             </button>
                             <button type="submit"
-                                    ui-sref="devicemySuffix.edit({id:device.id})"
+                                    ui-sref="device-my-suffix.edit({id:device.id})"
                                     class="btn btn-primary btn-sm">
                                 <span class="glyphicon glyphicon-pencil"></span>
                                 <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
                             </button>
                             <button type="submit"
-                                    ui-sref="devicemySuffix.delete({id:device.id})"
+                                    ui-sref="device-my-suffix.delete({id:device.id})"
                                     class="btn btn-danger btn-sm">
                                 <span class="glyphicon glyphicon-remove-circle"></span>
                                 <span class="hidden-sm-down" data-translate="entity.action.delete"></span>

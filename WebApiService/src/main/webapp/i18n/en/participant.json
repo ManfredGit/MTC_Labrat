@@ -4,8 +4,7 @@
             "home": {
                 "title": "Participants",
                 "createLabel": "Create a new Participant",
-                "createOrEditLabel": "Create or edit a Participant",
-                "search": "Search for Participant"
+                "createOrEditLabel": "Create or edit a Participant"
             },
             "created": "A new Participant is created with identifier {{ param }}",
             "updated": "A Participant is updated with identifier {{ param }}",

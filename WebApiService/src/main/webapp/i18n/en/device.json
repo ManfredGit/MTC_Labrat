@@ -4,8 +4,7 @@
             "home": {
                 "title": "Devices",
                 "createLabel": "Create a new Device",
-                "createOrEditLabel": "Create or edit a Device",
-                "search": "Search for Device"
+                "createOrEditLabel": "Create or edit a Device"
             },
             "created": "A new Device is created with identifier {{ param }}",
             "updated": "A Device is updated with identifier {{ param }}",

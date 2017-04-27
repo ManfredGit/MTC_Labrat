@@ -32,7 +32,7 @@
             "fieldValues": "ACTIVE,COMPLETED,CANCELED"
         }
     ],
-    "changelogDate": "20170308170056",
+    "changelogDate": "20170426201719",
     "entityTableName": "lease",
     "dto": "mapstruct",
     "pagination": "pagination",
