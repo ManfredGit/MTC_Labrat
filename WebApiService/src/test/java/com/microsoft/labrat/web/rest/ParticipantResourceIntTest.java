@@ -109,7 +109,7 @@ public class ParticipantResourceIntTest {
         int databaseSizeBeforeCreate = participantRepository.findAll().size();
 
         // Create the Participant
-        ParticipantDTO participantDTO = participantMapper.participantToParticipantDTO(participant);
+        ParticipantDTO participantDTO = participantMapper.toDto(participant);
         restParticipantMockMvc.perform(post("/api/participants")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(participantDTO)))
@@ -132,7 +132,7 @@ public class ParticipantResourceIntTest {
 
         // Create the Participant with an existing ID
         participant.setId(1L);
-        ParticipantDTO participantDTO = participantMapper.participantToParticipantDTO(participant);
+        ParticipantDTO participantDTO = participantMapper.toDto(participant);
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restParticipantMockMvc.perform(post("/api/participants")
@@ -153,7 +153,7 @@ public class ParticipantResourceIntTest {
         participant.setFirstName(null);
 
         // Create the Participant, which fails.
-        ParticipantDTO participantDTO = participantMapper.participantToParticipantDTO(participant);
+        ParticipantDTO participantDTO = participantMapper.toDto(participant);
 
         restParticipantMockMvc.perform(post("/api/participants")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -172,7 +172,7 @@ public class ParticipantResourceIntTest {
         participant.setLastName(null);
 
         // Create the Participant, which fails.
-        ParticipantDTO participantDTO = participantMapper.participantToParticipantDTO(participant);
+        ParticipantDTO participantDTO = participantMapper.toDto(participant);
 
         restParticipantMockMvc.perform(post("/api/participants")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -239,7 +239,7 @@ public class ParticipantResourceIntTest {
             .lastName(UPDATED_LAST_NAME)
             .email(UPDATED_EMAIL)
             .phoneNumber(UPDATED_PHONE_NUMBER);
-        ParticipantDTO participantDTO = participantMapper.participantToParticipantDTO(updatedParticipant);
+        ParticipantDTO participantDTO = participantMapper.toDto(updatedParticipant);
 
         restParticipantMockMvc.perform(put("/api/participants")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -262,7 +262,7 @@ public class ParticipantResourceIntTest {
         int databaseSizeBeforeUpdate = participantRepository.findAll().size();
 
         // Create the Participant
-        ParticipantDTO participantDTO = participantMapper.participantToParticipantDTO(participant);
+        ParticipantDTO participantDTO = participantMapper.toDto(participant);
 
         // If the entity doesn't have an ID, it will be created instead of just being updated
         restParticipantMockMvc.perform(put("/api/participants")
@@ -296,5 +296,37 @@ public class ParticipantResourceIntTest {
     @Transactional
     public void equalsVerifier() throws Exception {
         TestUtil.equalsVerifier(Participant.class);
+        Participant participant1 = new Participant();
+        participant1.setId(1L);
+        Participant participant2 = new Participant();
+        participant2.setId(participant1.getId());
+        assertThat(participant1).isEqualTo(participant2);
+        participant2.setId(2L);
+        assertThat(participant1).isNotEqualTo(participant2);
+        participant1.setId(null);
+        assertThat(participant1).isNotEqualTo(participant2);
+    }
+
+    @Test
+    @Transactional
+    public void dtoEqualsVerifier() throws Exception {
+        TestUtil.equalsVerifier(ParticipantDTO.class);
+        ParticipantDTO participantDTO1 = new ParticipantDTO();
+        participantDTO1.setId(1L);
+        ParticipantDTO participantDTO2 = new ParticipantDTO();
+        assertThat(participantDTO1).isNotEqualTo(participantDTO2);
+        participantDTO2.setId(participantDTO1.getId());
+        assertThat(participantDTO1).isEqualTo(participantDTO2);
+        participantDTO2.setId(2L);
+        assertThat(participantDTO1).isNotEqualTo(participantDTO2);
+        participantDTO1.setId(null);
+        assertThat(participantDTO1).isNotEqualTo(participantDTO2);
+    }
+
+    @Test
+    @Transactional
+    public void testEntityFromId() {
+        assertThat(participantMapper.fromId(42L).getId()).isEqualTo(42);
+        assertThat(participantMapper.fromId(null)).isNull();
     }
 }

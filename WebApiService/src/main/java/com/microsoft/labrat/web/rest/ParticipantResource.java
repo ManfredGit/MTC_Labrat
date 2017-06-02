@@ -22,10 +22,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.LinkedList;
+
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 /**
  * REST controller for managing Participant.
@@ -37,7 +36,7 @@ public class ParticipantResource {
     private final Logger log = LoggerFactory.getLogger(ParticipantResource.class);
 
     private static final String ENTITY_NAME = "participant";
-        
+
     private final ParticipantRepository participantRepository;
 
     private final ParticipantMapper participantMapper;
@@ -61,9 +60,9 @@ public class ParticipantResource {
         if (participantDTO.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new participant cannot already have an ID")).body(null);
         }
-        Participant participant = participantMapper.participantDTOToParticipant(participantDTO);
+        Participant participant = participantMapper.toEntity(participantDTO);
         participant = participantRepository.save(participant);
-        ParticipantDTO result = participantMapper.participantToParticipantDTO(participant);
+        ParticipantDTO result = participantMapper.toDto(participant);
         return ResponseEntity.created(new URI("/api/participants/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -85,9 +84,9 @@ public class ParticipantResource {
         if (participantDTO.getId() == null) {
             return createParticipant(participantDTO);
         }
-        Participant participant = participantMapper.participantDTOToParticipant(participantDTO);
+        Participant participant = participantMapper.toEntity(participantDTO);
         participant = participantRepository.save(participant);
-        ParticipantDTO result = participantMapper.participantToParticipantDTO(participant);
+        ParticipantDTO result = participantMapper.toDto(participant);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, participantDTO.getId().toString()))
             .body(result);
@@ -105,7 +104,7 @@ public class ParticipantResource {
         log.debug("REST request to get a page of Participants");
         Page<Participant> page = participantRepository.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/participants");
-        return new ResponseEntity<>(participantMapper.participantsToParticipantDTOs(page.getContent()), headers, HttpStatus.OK);
+        return new ResponseEntity<>(participantMapper.toDto(page.getContent()), headers, HttpStatus.OK);
     }
 
     /**
@@ -119,7 +118,7 @@ public class ParticipantResource {
     public ResponseEntity<ParticipantDTO> getParticipant(@PathVariable Long id) {
         log.debug("REST request to get Participant : {}", id);
         Participant participant = participantRepository.findOne(id);
-        ParticipantDTO participantDTO = participantMapper.participantToParticipantDTO(participant);
+        ParticipantDTO participantDTO = participantMapper.toDto(participant);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(participantDTO));
     }
 
@@ -136,5 +135,4 @@ public class ParticipantResource {
         participantRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
-
 }

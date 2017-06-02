@@ -125,24 +125,24 @@ public class Lease implements Serializable {
             return false;
         }
         Lease lease = (Lease) o;
-        if (lease.id == null || id == null) {
+        if (lease.getId() == null || getId() == null) {
             return false;
         }
-        return Objects.equals(id, lease.id);
+        return Objects.equals(getId(), lease.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id);
+        return Objects.hashCode(getId());
     }
 
     @Override
     public String toString() {
         return "Lease{" +
-            "id=" + id +
-            ", startDate='" + startDate + "'" +
-            ", endDate='" + endDate + "'" +
-            ", status='" + status + "'" +
-            '}';
+            "id=" + getId() +
+            ", startDate='" + getStartDate() + "'" +
+            ", endDate='" + getEndDate() + "'" +
+            ", status='" + getStatus() + "'" +
+            "}";
     }
 }

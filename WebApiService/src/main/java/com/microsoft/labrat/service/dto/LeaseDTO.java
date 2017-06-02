@@ -36,6 +36,7 @@ public class LeaseDTO implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
     public ZonedDateTime getStartDate() {
         return startDate;
     }
@@ -43,6 +44,7 @@ public class LeaseDTO implements Serializable {
     public void setStartDate(ZonedDateTime startDate) {
         this.startDate = startDate;
     }
+
     public ZonedDateTime getEndDate() {
         return endDate;
     }
@@ -50,6 +52,7 @@ public class LeaseDTO implements Serializable {
     public void setEndDate(ZonedDateTime endDate) {
         this.endDate = endDate;
     }
+
     public LeaseStatus getStatus() {
         return status;
     }
@@ -92,24 +95,24 @@ public class LeaseDTO implements Serializable {
         }
 
         LeaseDTO leaseDTO = (LeaseDTO) o;
-
-        if ( ! Objects.equals(id, leaseDTO.id)) { return false; }
-
-        return true;
+        if(leaseDTO.getId() == null || getId() == null) {
+            return false;
+        }
+        return Objects.equals(getId(), leaseDTO.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id);
+        return Objects.hashCode(getId());
     }
 
     @Override
     public String toString() {
         return "LeaseDTO{" +
-            "id=" + id +
-            ", startDate='" + startDate + "'" +
-            ", endDate='" + endDate + "'" +
-            ", status='" + status + "'" +
-            '}';
+            "id=" + getId() +
+            ", startDate='" + getStartDate() + "'" +
+            ", endDate='" + getEndDate() + "'" +
+            ", status='" + getStatus() + "'" +
+            "}";
     }
 }

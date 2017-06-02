@@ -1,0 +1,24 @@
+{
+    "labratApp": {
+        "intervention" : {
+            "home": {
+                "title": "Interventions",
+                "createLabel": "Create a new Intervention",
+                "createOrEditLabel": "Create or edit a Intervention"
+            },
+            "created": "A new Intervention is created with identifier {{ param }}",
+            "updated": "A Intervention is updated with identifier {{ param }}",
+            "deleted": "A Intervention is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Intervention {{ id }}?"
+            },
+            "detail": {
+                "title": "Intervention"
+            },
+            "description": "Description",
+            "startTime": "Start Time",
+            "endTime": "End Time",
+            "lease": "Lease"
+        }
+    }
+}

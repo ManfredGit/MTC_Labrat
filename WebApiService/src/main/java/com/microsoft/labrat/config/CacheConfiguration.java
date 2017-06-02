@@ -46,6 +46,7 @@ public class CacheConfiguration {
             cm.createCache(com.microsoft.labrat.domain.Participant.class.getName(), jcacheConfiguration);
             cm.createCache(com.microsoft.labrat.domain.Device.class.getName(), jcacheConfiguration);
             cm.createCache(com.microsoft.labrat.domain.Lease.class.getName(), jcacheConfiguration);
+            cm.createCache(com.microsoft.labrat.domain.Intervention.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

@@ -34,6 +34,7 @@ public class DeviceDTO implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
     public String getName() {
         return name;
     }
@@ -41,6 +42,7 @@ public class DeviceDTO implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+
     public String getManufacture() {
         return manufacture;
     }
@@ -48,6 +50,7 @@ public class DeviceDTO implements Serializable {
     public void setManufacture(String manufacture) {
         this.manufacture = manufacture;
     }
+
     public String getModel() {
         return model;
     }
@@ -55,6 +58,7 @@ public class DeviceDTO implements Serializable {
     public void setModel(String model) {
         this.model = model;
     }
+
     public String getApiUserId() {
         return apiUserId;
     }
@@ -62,6 +66,7 @@ public class DeviceDTO implements Serializable {
     public void setApiUserId(String apiUserId) {
         this.apiUserId = apiUserId;
     }
+
     public String getApiUriPrefix() {
         return apiUriPrefix;
     }
@@ -69,6 +74,7 @@ public class DeviceDTO implements Serializable {
     public void setApiUriPrefix(String apiUriPrefix) {
         this.apiUriPrefix = apiUriPrefix;
     }
+
     public String getApiToken() {
         return apiToken;
     }
@@ -87,27 +93,27 @@ public class DeviceDTO implements Serializable {
         }
 
         DeviceDTO deviceDTO = (DeviceDTO) o;
-
-        if ( ! Objects.equals(id, deviceDTO.id)) { return false; }
-
-        return true;
+        if(deviceDTO.getId() == null || getId() == null) {
+            return false;
+        }
+        return Objects.equals(getId(), deviceDTO.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id);
+        return Objects.hashCode(getId());
     }
 
     @Override
     public String toString() {
         return "DeviceDTO{" +
-            "id=" + id +
-            ", name='" + name + "'" +
-            ", manufacture='" + manufacture + "'" +
-            ", model='" + model + "'" +
-            ", apiUserId='" + apiUserId + "'" +
-            ", apiUriPrefix='" + apiUriPrefix + "'" +
-            ", apiToken='" + apiToken + "'" +
-            '}';
+            "id=" + getId() +
+            ", name='" + getName() + "'" +
+            ", manufacture='" + getManufacture() + "'" +
+            ", model='" + getModel() + "'" +
+            ", apiUserId='" + getApiUserId() + "'" +
+            ", apiUriPrefix='" + getApiUriPrefix() + "'" +
+            ", apiToken='" + getApiToken() + "'" +
+            "}";
     }
 }

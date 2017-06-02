@@ -22,10 +22,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.LinkedList;
+
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 /**
  * REST controller for managing Device.
@@ -37,7 +36,7 @@ public class DeviceResource {
     private final Logger log = LoggerFactory.getLogger(DeviceResource.class);
 
     private static final String ENTITY_NAME = "device";
-        
+
     private final DeviceRepository deviceRepository;
 
     private final DeviceMapper deviceMapper;
@@ -61,9 +60,9 @@ public class DeviceResource {
         if (deviceDTO.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new device cannot already have an ID")).body(null);
         }
-        Device device = deviceMapper.deviceDTOToDevice(deviceDTO);
+        Device device = deviceMapper.toEntity(deviceDTO);
         device = deviceRepository.save(device);
-        DeviceDTO result = deviceMapper.deviceToDeviceDTO(device);
+        DeviceDTO result = deviceMapper.toDto(device);
         return ResponseEntity.created(new URI("/api/devices/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -85,9 +84,9 @@ public class DeviceResource {
         if (deviceDTO.getId() == null) {
             return createDevice(deviceDTO);
         }
-        Device device = deviceMapper.deviceDTOToDevice(deviceDTO);
+        Device device = deviceMapper.toEntity(deviceDTO);
         device = deviceRepository.save(device);
-        DeviceDTO result = deviceMapper.deviceToDeviceDTO(device);
+        DeviceDTO result = deviceMapper.toDto(device);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, deviceDTO.getId().toString()))
             .body(result);
@@ -105,7 +104,7 @@ public class DeviceResource {
         log.debug("REST request to get a page of Devices");
         Page<Device> page = deviceRepository.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/devices");
-        return new ResponseEntity<>(deviceMapper.devicesToDeviceDTOs(page.getContent()), headers, HttpStatus.OK);
+        return new ResponseEntity<>(deviceMapper.toDto(page.getContent()), headers, HttpStatus.OK);
     }
 
     /**
@@ -119,7 +118,7 @@ public class DeviceResource {
     public ResponseEntity<DeviceDTO> getDevice(@PathVariable Long id) {
         log.debug("REST request to get Device : {}", id);
         Device device = deviceRepository.findOne(id);
-        DeviceDTO deviceDTO = deviceMapper.deviceToDeviceDTO(device);
+        DeviceDTO deviceDTO = deviceMapper.toDto(device);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(deviceDTO));
     }
 
@@ -136,5 +135,4 @@ public class DeviceResource {
         deviceRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
-
 }

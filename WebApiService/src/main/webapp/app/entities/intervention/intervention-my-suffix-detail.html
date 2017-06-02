@@ -1,0 +1,35 @@
+
+<div>
+    <h2><span data-translate="labratApp.intervention.detail.title">Intervention</span> {{vm.intervention.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="labratApp.intervention.description">Description</span></dt>
+        <dd>
+            <span>{{vm.intervention.description}}</span>
+        </dd>
+        <dt><span data-translate="labratApp.intervention.startTime">Start Time</span></dt>
+        <dd>
+            <span>{{vm.intervention.startTime | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="labratApp.intervention.endTime">End Time</span></dt>
+        <dd>
+            <span>{{vm.intervention.endTime | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="labratApp.intervention.lease">Lease</span></dt>
+        <dd>
+            <a ui-sref="lease-my-suffix-detail({id:vm.intervention.leaseId})">{{vm.intervention.leaseId}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="intervention-my-suffix-detail.edit({id:vm.intervention.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

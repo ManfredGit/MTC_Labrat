@@ -139,27 +139,27 @@ public class Device implements Serializable {
             return false;
         }
         Device device = (Device) o;
-        if (device.id == null || id == null) {
+        if (device.getId() == null || getId() == null) {
             return false;
         }
-        return Objects.equals(id, device.id);
+        return Objects.equals(getId(), device.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id);
+        return Objects.hashCode(getId());
     }
 
     @Override
     public String toString() {
         return "Device{" +
-            "id=" + id +
-            ", name='" + name + "'" +
-            ", manufacture='" + manufacture + "'" +
-            ", model='" + model + "'" +
-            ", apiUserId='" + apiUserId + "'" +
-            ", apiUriPrefix='" + apiUriPrefix + "'" +
-            ", apiToken='" + apiToken + "'" +
-            '}';
+            "id=" + getId() +
+            ", name='" + getName() + "'" +
+            ", manufacture='" + getManufacture() + "'" +
+            ", model='" + getModel() + "'" +
+            ", apiUserId='" + getApiUserId() + "'" +
+            ", apiUriPrefix='" + getApiUriPrefix() + "'" +
+            ", apiToken='" + getApiToken() + "'" +
+            "}";
     }
 }

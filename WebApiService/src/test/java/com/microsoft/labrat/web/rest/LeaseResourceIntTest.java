@@ -111,7 +111,7 @@ public class LeaseResourceIntTest {
         int databaseSizeBeforeCreate = leaseRepository.findAll().size();
 
         // Create the Lease
-        LeaseDTO leaseDTO = leaseMapper.leaseToLeaseDTO(lease);
+        LeaseDTO leaseDTO = leaseMapper.toDto(lease);
         restLeaseMockMvc.perform(post("/api/leases")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(leaseDTO)))
@@ -133,7 +133,7 @@ public class LeaseResourceIntTest {
 
         // Create the Lease with an existing ID
         lease.setId(1L);
-        LeaseDTO leaseDTO = leaseMapper.leaseToLeaseDTO(lease);
+        LeaseDTO leaseDTO = leaseMapper.toDto(lease);
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restLeaseMockMvc.perform(post("/api/leases")
@@ -154,7 +154,7 @@ public class LeaseResourceIntTest {
         lease.setStartDate(null);
 
         // Create the Lease, which fails.
-        LeaseDTO leaseDTO = leaseMapper.leaseToLeaseDTO(lease);
+        LeaseDTO leaseDTO = leaseMapper.toDto(lease);
 
         restLeaseMockMvc.perform(post("/api/leases")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -218,7 +218,7 @@ public class LeaseResourceIntTest {
             .startDate(UPDATED_START_DATE)
             .endDate(UPDATED_END_DATE)
             .status(UPDATED_STATUS);
-        LeaseDTO leaseDTO = leaseMapper.leaseToLeaseDTO(updatedLease);
+        LeaseDTO leaseDTO = leaseMapper.toDto(updatedLease);
 
         restLeaseMockMvc.perform(put("/api/leases")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -240,7 +240,7 @@ public class LeaseResourceIntTest {
         int databaseSizeBeforeUpdate = leaseRepository.findAll().size();
 
         // Create the Lease
-        LeaseDTO leaseDTO = leaseMapper.leaseToLeaseDTO(lease);
+        LeaseDTO leaseDTO = leaseMapper.toDto(lease);
 
         // If the entity doesn't have an ID, it will be created instead of just being updated
         restLeaseMockMvc.perform(put("/api/leases")
@@ -274,5 +274,37 @@ public class LeaseResourceIntTest {
     @Transactional
     public void equalsVerifier() throws Exception {
         TestUtil.equalsVerifier(Lease.class);
+        Lease lease1 = new Lease();
+        lease1.setId(1L);
+        Lease lease2 = new Lease();
+        lease2.setId(lease1.getId());
+        assertThat(lease1).isEqualTo(lease2);
+        lease2.setId(2L);
+        assertThat(lease1).isNotEqualTo(lease2);
+        lease1.setId(null);
+        assertThat(lease1).isNotEqualTo(lease2);
+    }
+
+    @Test
+    @Transactional
+    public void dtoEqualsVerifier() throws Exception {
+        TestUtil.equalsVerifier(LeaseDTO.class);
+        LeaseDTO leaseDTO1 = new LeaseDTO();
+        leaseDTO1.setId(1L);
+        LeaseDTO leaseDTO2 = new LeaseDTO();
+        assertThat(leaseDTO1).isNotEqualTo(leaseDTO2);
+        leaseDTO2.setId(leaseDTO1.getId());
+        assertThat(leaseDTO1).isEqualTo(leaseDTO2);
+        leaseDTO2.setId(2L);
+        assertThat(leaseDTO1).isNotEqualTo(leaseDTO2);
+        leaseDTO1.setId(null);
+        assertThat(leaseDTO1).isNotEqualTo(leaseDTO2);
+    }
+
+    @Test
+    @Transactional
+    public void testEntityFromId() {
+        assertThat(leaseMapper.fromId(42L).getId()).isEqualTo(42);
+        assertThat(leaseMapper.fromId(null)).isNull();
     }
 }

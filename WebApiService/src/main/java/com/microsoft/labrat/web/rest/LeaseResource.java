@@ -22,10 +22,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.LinkedList;
+
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 /**
  * REST controller for managing Lease.
@@ -37,7 +36,7 @@ public class LeaseResource {
     private final Logger log = LoggerFactory.getLogger(LeaseResource.class);
 
     private static final String ENTITY_NAME = "lease";
-        
+
     private final LeaseRepository leaseRepository;
 
     private final LeaseMapper leaseMapper;
@@ -61,9 +60,9 @@ public class LeaseResource {
         if (leaseDTO.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new lease cannot already have an ID")).body(null);
         }
-        Lease lease = leaseMapper.leaseDTOToLease(leaseDTO);
+        Lease lease = leaseMapper.toEntity(leaseDTO);
         lease = leaseRepository.save(lease);
-        LeaseDTO result = leaseMapper.leaseToLeaseDTO(lease);
+        LeaseDTO result = leaseMapper.toDto(lease);
         return ResponseEntity.created(new URI("/api/leases/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -85,9 +84,9 @@ public class LeaseResource {
         if (leaseDTO.getId() == null) {
             return createLease(leaseDTO);
         }
-        Lease lease = leaseMapper.leaseDTOToLease(leaseDTO);
+        Lease lease = leaseMapper.toEntity(leaseDTO);
         lease = leaseRepository.save(lease);
-        LeaseDTO result = leaseMapper.leaseToLeaseDTO(lease);
+        LeaseDTO result = leaseMapper.toDto(lease);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, leaseDTO.getId().toString()))
             .body(result);
@@ -105,7 +104,7 @@ public class LeaseResource {
         log.debug("REST request to get a page of Leases");
         Page<Lease> page = leaseRepository.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/leases");
-        return new ResponseEntity<>(leaseMapper.leasesToLeaseDTOs(page.getContent()), headers, HttpStatus.OK);
+        return new ResponseEntity<>(leaseMapper.toDto(page.getContent()), headers, HttpStatus.OK);
     }
 
     /**
@@ -119,7 +118,7 @@ public class LeaseResource {
     public ResponseEntity<LeaseDTO> getLease(@PathVariable Long id) {
         log.debug("REST request to get Lease : {}", id);
         Lease lease = leaseRepository.findOne(id);
-        LeaseDTO leaseDTO = leaseMapper.leaseToLeaseDTO(lease);
+        LeaseDTO leaseDTO = leaseMapper.toDto(lease);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(leaseDTO));
     }
 
@@ -136,5 +135,4 @@ public class LeaseResource {
         leaseRepository.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
-
 }

@@ -117,7 +117,7 @@ public class DeviceResourceIntTest {
         int databaseSizeBeforeCreate = deviceRepository.findAll().size();
 
         // Create the Device
-        DeviceDTO deviceDTO = deviceMapper.deviceToDeviceDTO(device);
+        DeviceDTO deviceDTO = deviceMapper.toDto(device);
         restDeviceMockMvc.perform(post("/api/devices")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(deviceDTO)))
@@ -142,7 +142,7 @@ public class DeviceResourceIntTest {
 
         // Create the Device with an existing ID
         device.setId(1L);
-        DeviceDTO deviceDTO = deviceMapper.deviceToDeviceDTO(device);
+        DeviceDTO deviceDTO = deviceMapper.toDto(device);
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restDeviceMockMvc.perform(post("/api/devices")
@@ -163,7 +163,7 @@ public class DeviceResourceIntTest {
         device.setName(null);
 
         // Create the Device, which fails.
-        DeviceDTO deviceDTO = deviceMapper.deviceToDeviceDTO(device);
+        DeviceDTO deviceDTO = deviceMapper.toDto(device);
 
         restDeviceMockMvc.perform(post("/api/devices")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -182,7 +182,7 @@ public class DeviceResourceIntTest {
         device.setManufacture(null);
 
         // Create the Device, which fails.
-        DeviceDTO deviceDTO = deviceMapper.deviceToDeviceDTO(device);
+        DeviceDTO deviceDTO = deviceMapper.toDto(device);
 
         restDeviceMockMvc.perform(post("/api/devices")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -255,7 +255,7 @@ public class DeviceResourceIntTest {
             .apiUserId(UPDATED_API_USER_ID)
             .apiUriPrefix(UPDATED_API_URI_PREFIX)
             .apiToken(UPDATED_API_TOKEN);
-        DeviceDTO deviceDTO = deviceMapper.deviceToDeviceDTO(updatedDevice);
+        DeviceDTO deviceDTO = deviceMapper.toDto(updatedDevice);
 
         restDeviceMockMvc.perform(put("/api/devices")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -280,7 +280,7 @@ public class DeviceResourceIntTest {
         int databaseSizeBeforeUpdate = deviceRepository.findAll().size();
 
         // Create the Device
-        DeviceDTO deviceDTO = deviceMapper.deviceToDeviceDTO(device);
+        DeviceDTO deviceDTO = deviceMapper.toDto(device);
 
         // If the entity doesn't have an ID, it will be created instead of just being updated
         restDeviceMockMvc.perform(put("/api/devices")
@@ -314,5 +314,37 @@ public class DeviceResourceIntTest {
     @Transactional
     public void equalsVerifier() throws Exception {
         TestUtil.equalsVerifier(Device.class);
+        Device device1 = new Device();
+        device1.setId(1L);
+        Device device2 = new Device();
+        device2.setId(device1.getId());
+        assertThat(device1).isEqualTo(device2);
+        device2.setId(2L);
+        assertThat(device1).isNotEqualTo(device2);
+        device1.setId(null);
+        assertThat(device1).isNotEqualTo(device2);
+    }
+
+    @Test
+    @Transactional
+    public void dtoEqualsVerifier() throws Exception {
+        TestUtil.equalsVerifier(DeviceDTO.class);
+        DeviceDTO deviceDTO1 = new DeviceDTO();
+        deviceDTO1.setId(1L);
+        DeviceDTO deviceDTO2 = new DeviceDTO();
+        assertThat(deviceDTO1).isNotEqualTo(deviceDTO2);
+        deviceDTO2.setId(deviceDTO1.getId());
+        assertThat(deviceDTO1).isEqualTo(deviceDTO2);
+        deviceDTO2.setId(2L);
+        assertThat(deviceDTO1).isNotEqualTo(deviceDTO2);
+        deviceDTO1.setId(null);
+        assertThat(deviceDTO1).isNotEqualTo(deviceDTO2);
+    }
+
+    @Test
+    @Transactional
+    public void testEntityFromId() {
+        assertThat(deviceMapper.fromId(42L).getId()).isEqualTo(42);
+        assertThat(deviceMapper.fromId(null)).isNull();
     }
 }

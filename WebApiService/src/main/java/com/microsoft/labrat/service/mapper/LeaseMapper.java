@@ -4,35 +4,24 @@ import com.microsoft.labrat.domain.*;
 import com.microsoft.labrat.service.dto.LeaseDTO;
 
 import org.mapstruct.*;
-import java.util.List;
 
 /**
  * Mapper for the entity Lease and its DTO LeaseDTO.
  */
 @Mapper(componentModel = "spring", uses = {DeviceMapper.class, ParticipantMapper.class, })
-public interface LeaseMapper {
+public interface LeaseMapper extends EntityMapper <LeaseDTO, Lease> {
 
     @Mapping(source = "device.id", target = "deviceId")
     @Mapping(source = "device.name", target = "deviceName")
-    @Mapping(source = "participant.id", target = "participantId")
-    LeaseDTO leaseToLeaseDTO(Lease lease);
 
-    List<LeaseDTO> leasesToLeaseDTOs(List<Lease> leases);
+    @Mapping(source = "participant.id", target = "participantId")
+    LeaseDTO toDto(Lease lease); 
 
     @Mapping(source = "deviceId", target = "device")
-    @Mapping(source = "participantId", target = "participant")
-    Lease leaseDTOToLease(LeaseDTO leaseDTO);
 
-    List<Lease> leaseDTOsToLeases(List<LeaseDTO> leaseDTOs);
-    /**
-     * generating the fromId for all mappers if the databaseType is sql, as the class has relationship to it might need it, instead of
-     * creating a new attribute to know if the entity has any relationship from some other entity
-     *
-     * @param id id of the entity
-     * @return the entity instance
-     */
-     
-    default Lease leaseFromId(Long id) {
+    @Mapping(source = "participantId", target = "participant")
+    Lease toEntity(LeaseDTO leaseDTO); 
+    default Lease fromId(Long id) {
         if (id == null) {
             return null;
         }
@@ -40,6 +29,4 @@ public interface LeaseMapper {
         lease.setId(id);
         return lease;
     }
-    
-
 }

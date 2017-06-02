@@ -1,0 +1,50 @@
+
+/**
+ * The Employee entity.
+ */
+entity Participant {
+	firstName String required,
+	lastName String required,
+	email String,
+	phoneNumber String
+}
+
+entity Device {
+	name String required minlength(3),
+    manufacture String required,
+    model String,
+    apiUserId String,
+    apiUriPrefix String,
+	apiToken String,
+}
+
+entity Lease {
+	startDate ZonedDateTime required,
+	endDate ZonedDateTime,
+    status LeaseStatus
+}
+
+entity Intervention {
+	description String,
+	startTime ZonedDateTime required,
+    endTime ZonedDateTime
+}
+enum LeaseStatus {
+	ACTIVE, COMPLETED, CANCELED
+}
+
+relationship ManyToOne {
+	Lease{device(name)} to Device,
+    Lease{participant} to Participant,
+    Intervention{lease} to Lease
+}
+
+// Set pagination options
+paginate Lease, Device, Participant with pagination
+
+dto * with mapstruct
+
+// Set service options to all except few
+//service all with serviceImpl except Employee, Job
+// Set an angular suffix
+angularSuffix * with mySuffix

@@ -108,25 +108,25 @@ public class Participant implements Serializable {
             return false;
         }
         Participant participant = (Participant) o;
-        if (participant.id == null || id == null) {
+        if (participant.getId() == null || getId() == null) {
             return false;
         }
-        return Objects.equals(id, participant.id);
+        return Objects.equals(getId(), participant.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(id);
+        return Objects.hashCode(getId());
     }
 
     @Override
     public String toString() {
         return "Participant{" +
-            "id=" + id +
-            ", firstName='" + firstName + "'" +
-            ", lastName='" + lastName + "'" +
-            ", email='" + email + "'" +
-            ", phoneNumber='" + phoneNumber + "'" +
-            '}';
+            "id=" + getId() +
+            ", firstName='" + getFirstName() + "'" +
+            ", lastName='" + getLastName() + "'" +
+            ", email='" + getEmail() + "'" +
+            ", phoneNumber='" + getPhoneNumber() + "'" +
+            "}";
     }
 }
