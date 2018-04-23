@@ -5,9 +5,9 @@
             <p class="lead" data-translate="home.subtitle">This Clinical Study Platform aids the organizers in managing the participants, equipment and scheduling in a health-related interventions to evaluate the effects and health outcomes.</p>
 
             <div ng-switch="vm.isAuthenticated()">
-                <div class="alert alert-success" ng-switch-when="true" data-translate="home.logged.message" translate-values="{username: '{{vm.account.login}}'}">
+                <!--<div class="alert alert-success" ng-switch-when="true" data-translate="home.logged.message" translate-values="{username: '{{vm.account.login}}'}">
                     You are logged in as user "{{vm.account.login}}".
-                </div>
+                </div>-->
 
                 <div class="alert alert-warning" ng-switch-when="false" data-translate="global.messages.info.authenticated" translate-compile>
                     If you want to <a class="alert-link" href="" ng-click="vm.login()">sign in</a>, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").
@@ -16,6 +16,9 @@
                 <div class="alert alert-warning" ng-switch-when="false" data-translate="global.messages.info.register" translate-compile>
                     You don't have an account yet? <a class="alert-link" ui-sref="register">Register a new account</a>
                 </div>
+
+                <iframe ng-switch-when="true" src="https://msit.powerbi.com/view?r=eyJrIjoiOTdjYTk5ZjctMzMwMy00ZGQxLTljMWUtZmQ4N2EyODY5MzhlIiwidCI6IjcyZjk4OGJmLTg2ZjEtNDFhZi05MWFiLTJkN2NkMDExZGI0NyIsImMiOjV9&pageName=ReportSection" style="background-color: white; width:100%; height:600px; border:none;">
+                </iframe>
             </div>
         </div>
     </div>
